@@ -10,7 +10,7 @@ def merge_edit_gcodes():
         NONE'''
     bad_words = ['heating'] 
     data = ""
-    #data for 2nd color only
+    #data2 for 2nd color only
     #data2 = "" 
     with open("part_one.gcode") as fp:
         for line in fp:
@@ -18,12 +18,30 @@ def merge_edit_gcodes():
                 finalLine = ""
                 lineTokens = line.split()
                 for token in lineTokens:
-                    if token.contains('Z'):
+                    if 'Z' in token:
                         continue
                     else:
                         finalLine = finalLine + token + " "
-                data += finalLine
-
+                data += finalLine + '\n'
+    #code below can be used if you are looking to
+    #    add a second color and merge            
+    """with open("part_two.gcode") as fp:
+        for line in fp:
+            if line.strip() == ';LAYER:0':  # Or whatever test is needed
+              break
+    # Reads text until the end of the block:
+        for line in fp:  # This keeps reading the file
+            if line.strip() == ';End of Gcode':
+              break
+            finalLine = ""
+            lineTokens = line.split()
+            for token in lineTokens:
+                if token.contains('Z'):
+                    continue
+                else:
+                    finalLine = finalLine + token + " "
+            data2+=line
+     """
     # Merging 2 files to next line
     data += "\n"
     #data += data2

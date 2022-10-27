@@ -1,10 +1,17 @@
 def main():
-    merge_gcodes()
+    merge_edit_gcodes()
 
-def merge_gcodes(): 
+def merge_edit_gcodes(): 
+    '''Can take Gcode files and merge them to make 1 continuous gcode file
+    
+    Args:
+        NONE, but can be changed so files are passed instead of hard coded
+    Returns: 
+        NONE'''
     bad_words = ['heating'] 
     data = ""
-    data2 = ""
+    #data for 2nd color only
+    #data2 = "" 
     with open("part_one.gcode") as fp:
         for line in fp:
             if not any(bad_word in line for bad_word in bad_words):

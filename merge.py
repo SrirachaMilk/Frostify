@@ -15,7 +15,14 @@ def merge_edit_gcodes():
     with open("part_one.gcode") as fp:
         for line in fp:
             if not any(bad_word in line for bad_word in bad_words):
-                data += line
+                finalLine = ""
+                lineTokens = line.split()
+                for token in lineTokens:
+                    if token.contains('Z'):
+                        continue
+                    else:
+                        finalLine = finalLine + token + " "
+                data += finalLine
 
     """     with open("part_two.gcode") as fp:
         for line in fp:

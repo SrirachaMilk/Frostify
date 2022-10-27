@@ -15,6 +15,13 @@ def merge_gcodes():
         for line in fp:  # This keeps reading the file
             if line.strip() == ';End of Gcode':
               break
+            finalLine = ""
+            lineTokens = line.split()
+            for token in lineTokens:
+                if token.contains('Z'):
+                    continue
+                else:
+                    finalLine = finalLine + token + " "
             data2+=line
     
     # Merging 2 files to next line
